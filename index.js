@@ -14,39 +14,32 @@ client.on('ready', () => {
 });
 
 let msg; //reference to message
+let inter; //cancel timeouts and intervals
+
 // Create an event listener for messages
 client.on('message', async (message) => {
   // If the message is "ping"
-  if (message.content === 'ping') {
+  if (message.content === 'startfire') {
     // Send "pong" to the same channel
-    msg = await message.channel.send("`pong`", 'code');
-    setTimeout(() => {
-	msg.edit('brap');			
-    }, 2000);
-
-    /*
-    const channel = new Discord.Client().channels.fetch("835921321531015180")
-    channel.messages.fetch({ limit: 1 })
-    */      
-  };
+    msg = await message.channel.send("fire starting", 'code');
+    inter = setInterval(() => {
+	setTimeout(() => {
+	    msg.edit('```  /\n / |\n/ \\ \\\n\\_\\_/```', 'code');
+	    setTimeout(() => {
+		msg.edit('```\n   /\n \\/ \\\n / \\ \\\n \\\\__/```', 'code');
+	    }, 2000);
+	}, 2000);
+    }, 4000);
+  }
+  else if (message.content === 'stopfire') {
+    clearInterval(inter);
+    if (msg != undefined) {
+	msg.delete()
+		.then(console.log)
+		.catch(console.error);
+    };
+  }
 });
 
-/*
-  client.channels.fetch('835921321531015180').messages.fetch().then((messages) => {
-    if (messages.size === 0) 
-    {
-      // Send a new message
-      channel.send('1')
-    } 
-    else 
-    {
-      // Edit the existing message
-      for (const message of messages) {
-        message[1].edit('2')
-      }
-    }
-  })
-})
-*/
 
 client.login(config.token);

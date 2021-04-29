@@ -22,14 +22,13 @@ client.on('message', async (message) => {
   if (message.content === 'startfire') {
     // Send "pong" to the same channel
     msg = await message.channel.send("fire starting", 'code');
-    inter = setInterval(() => {
-	setTimeout(() => {
-	    msg.edit('```  /\n / |\n/ \\ \\\n\\_\\_/```', 'code');
-	    setTimeout(() => {
-		msg.edit('```\n   /\n \\/ \\\n / \\ \\\n \\\\__/```', 'code');
-	    }, 2000);
-	}, 2000);
-    }, 4000);
+    setInterval(p=h=>{
+	for(p[I++*I%17+
+		578]=i=89;i++<630;h+=i%30?" *"[p[
+		i]=p[i]+p[i+1]+p[i+29]+p[i+30]>>2
+		]||8:"\n");msg.edit('```' + h + '```', "code");
+    },I=1000)
+
   }
   else if (message.content === 'stopfire') {
     clearInterval(inter);

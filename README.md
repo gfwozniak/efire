@@ -1,5 +1,4 @@
 # efire
-#### Video Demo: https://youtu.be/5wYMixmMQu0
 #### Description:
 
 This is my first repo, so not exactly sure what info I should put in here...
